@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Search API</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Product Search & Inventory API</p>
+        <h1>Product Search Console</h1>
+      </div>
+      <div class="endpoint-pill" id="apiBaseLabel">API: /api</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel panel-wide">
+        <div class="panel-head">
+          <h2>Create Product</h2>
+          <button class="ghost" data-action="fill-sample-product" type="button">Use sample</button>
+        </div>
+        <form id="productForm" class="form-grid">
+          <label>
+            Name
+            <input name="name" required>
+          </label>
+          <label>
+            Brand
+            <input name="brand" required>
+          </label>
+          <label>
+            Category
+            <input name="category" placeholder="ELECTRONICS" required>
+          </label>
+          <label>
+            Price
+            <input name="price" type="number" step="0.01" required>
+          </label>
+          <label class="full">
+            Description
+            <input name="description" required>
+          </label>
+          <label class="inline">
+            <input name="active" type="checkbox" checked>
+            Active
+          </label>
+          <div class="full actions">
+            <button type="submit">Create Product</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Search</h2>
+        </div>
+        <form id="searchForm" class="stack">
+          <label>
+            Query
+            <input name="q" placeholder="iphone">
+          </label>
+          <label>
+            Category
+            <input name="category" placeholder="ELECTRONICS">
+          </label>
+          <label>
+            Brand
+            <input name="brand" placeholder="APPLE">
+          </label>
+          <div class="row-2">
+            <label>
+              Min Price
+              <input name="minPrice" type="number" step="0.01">
+            </label>
+            <label>
+              Max Price
+              <input name="maxPrice" type="number" step="0.01">
+            </label>
+          </div>
+          <div class="row-2">
+            <label>
+              Page
+              <input name="page" type="number" min="0" value="0">
+            </label>
+            <label>
+              Size
+              <input name="size" type="number" min="1" value="10">
+            </label>
+          </div>
+          <label>
+            Sort
+            <input name="sort" placeholder="price,asc">
+          </label>
+          <button type="submit">Search Products</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Inventory</h2>
+        </div>
+        <form id="inventoryForm" class="stack">
+          <label>
+            Product ID
+            <input name="productId" placeholder="P1001" required>
+          </label>
+          <label>
+            Quantity
+            <input name="quantity" type="number" min="0" required>
+          </label>
+          <label>
+            Reserved Quantity
+            <input name="reservedQuantity" type="number" min="0" value="0">
+          </label>
+          <label>
+            Warehouse
+            <input name="warehouseLocation" placeholder="Bangalore" required>
+          </label>
+          <button type="submit">Save Inventory</button>
+        </form>
+
+        <form id="lookupInventoryForm" class="stack lookup-form">
+          <label>
+            Lookup Product ID
+            <input name="productId" placeholder="P1001" required>
+          </label>
+          <button type="submit" class="secondary">Load Inventory</button>
+        </form>
+      </section>
+
+      <section class="panel panel-wide">
+        <div class="panel-head">
+          <h2>Products</h2>
+          <button class="ghost" data-action="load-products" type="button">Refresh</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Active</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <tr><td colspan="6" class="muted">No data loaded yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel panel-wide">
+        <div class="panel-head">
+          <h2>Results</h2>
+          <div class="chips">
+            <button class="ghost" data-action="load-popular" type="button">Popular</button>
+            <button class="ghost" data-action="load-all-inventory" type="button">All Inventory</button>
+          </div>
+        </div>
+        <pre id="resultPane" class="result-pane">Ready.</pre>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
